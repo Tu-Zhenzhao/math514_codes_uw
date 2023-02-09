@@ -59,6 +59,7 @@ y_cv=np.cos(t) + 0.35*np.cos(4*t)+0.25*np.cos(6*t)
 
 plt.scatter(x_list, y_list)
 plt.plot(x_cv, y_cv, color='r')
+plt.legend(['t_k', 'Parametric curve'])
 plt.show()
 
 
