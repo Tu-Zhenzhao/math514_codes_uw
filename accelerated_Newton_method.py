@@ -16,11 +16,13 @@ def f(x):
 # Derivative of the function
 def df(x):
     #return e**x-1
-    #return 4*x**3-21*x**2+20*x
-    if x>=0:
-        return 1/(3*x**(2/3))
+    #return 4*x**3-21*x**2+20*
+    #return 1/(3*abs(x)**(2/3))
+    if x>= 0:
+        return 1/(3*(x)**(2/3))
     else:
-        return -1/(3*(-x)**(2/3))
+        return 1/(3*(-x)**(2/3))
+
 
 # double derivative of the funtion
 def ddf(x):
