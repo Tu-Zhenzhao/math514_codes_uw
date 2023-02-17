@@ -79,7 +79,7 @@ for i in range(n):
     else:
         x-=df(x)/ddf(x)
         #print(count,x,fv)
-        print(ddf(x))
+        print(count, x, fv)
 
     #else:
     #    print('second-order might be 0!')
