@@ -15,7 +15,7 @@ gamma = np.array([1,1,2,6,24,120])
 log_gamma = np.log(gamma)
 
 # define k values
-k = 4
+k = 5
 
 abs_er_ls = []
 
@@ -24,8 +24,8 @@ for i_val in range(1,(k+1)):
     V = np.vander(x_range[:(i_val+1)])
 
     # get coeffient by solving Vandermonde matrix
-    #coeff = LA.solve(V,gamma[:(i_val+1)])
-    coeff = LA.solve(V, log_gamma[:(i_val+1)])
+    coeff = LA.solve(V,gamma[:(i_val+1)])
+    #coeff = LA.solve(V, log_gamma[:(i_val+1)])
 
     #polynomial function
     y = np.poly1d(coeff)
@@ -34,8 +34,8 @@ for i_val in range(1,(k+1)):
     y_plot = [np.polyval(coeff, i) for i in x_range]
 
     # absolute error
-    #abs_er = abs(y(1.5)-0.5*sqrt(pi))
-    abs_er = abs(exp(y(1.5))-0.5*sqrt(pi))
+    abs_er = abs(y(1.5)-0.5*sqrt(pi))
+    #abs_er = abs(exp(y(1.5))-0.5*sqrt(pi))
     abs_er_ls.append(abs_er)
 
     # ploting each polynomial function
@@ -50,6 +50,7 @@ print(coeff, y, abs_er_ls)
 
 # plot the absolute errors
 plt.scatter([range(k)], abs_er_ls)
+plt.title("|p_k(1.5)-|gamma(1.5)|")
 
-#plt.legend()
+plt.legend()
 plt.show()
