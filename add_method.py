@@ -1,13 +1,13 @@
 import numpy as np
 import sys
-
+import time
 
 sys.setrecursionlimit(1100)
 # initialized the data
-n=20000
+n=1024
 
-x = np.random.rand(n, 1)
-x_db_round=np.round(x,2)
+#x = np.random.rand(n, 1)
+#x_db_round=np.round(x,2)
 x_test=[x for x in range(1,9)]
 
 
@@ -38,19 +38,52 @@ def S(x):
         s_sum+=i
     return s_sum
 
-t =T(0,n-1, x_db_round)
-s=S(x_db_round)
+# for only compute once 
+#t_once =T(0,n-1, x_db_round)
+#s_once=S(x_db_round)
 
-np.random.shuffle(x_db_round)
+print(t_once, s_once)
+# instance of x
+times = 20000
 
-t_star =T(0,n-1, x_db_round)
-s_star=S(x_db_round)
+# start counting CPU time
+st = time.time()
 
-V_s =s-s_star
-V_t =t-t_star
+#list of random times
+var_V_s = [0]*times
+var_V_t = [0]*times
+#var_V_s = []
+#var_V_t = []
 
 
-print(V_s)
-print(V_t)
+# start looping 20000 times 
+for i in range(times):
+    # create new random x 
+    x = np.random.rand(n, 1)
+    x_db_round=np.round(x,2)
+
+    t =T(0,n-1, x_db_round)
+    s=S(x_db_round)
+
+    np.random.shuffle(x_db_round)
+
+    t_star =T(0,n-1, x_db_round)
+    s_star=S(x_db_round)
+
+    V_s =s-s_star
+    V_t =t-t_star
+
+    var_V_s[i]=V_s
+    var_V_t[i]=V_t
+
+    #var_V_s.append(V_s)
+    #var_V_t.append(V_t)
+# end counting CPU time
+ed=time.time()
+
+process_time = ed - st
+print(np.var(var_V_s))
+print(np.var(var_V_t))
+print(process_time,"s")
 
 
