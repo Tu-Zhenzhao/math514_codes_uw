@@ -62,8 +62,8 @@ for i in range(n):
     count+=1
 
     #add x to list
-    #x_list.append(log(abs(x)))
-    x_list.append(x)
+    x_list.append(log(abs(x)))
+    #x_list.append(abs(x))
     # Take Newton step
     r_t = root_test(x)
     fv = f(x)
