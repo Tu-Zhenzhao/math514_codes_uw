@@ -24,7 +24,7 @@ p_0.shape=(p_M*p_N*p_D)
 
 # for a fixed i value i=0, we got b_00 to b_06 by solving linear least squares
 b = LA.lstsq(L_trans, p_0, rcond=None)[0].tolist()
-
+print(b)
 
 #--------------------------------------------
 # Compte the b_ij for all i=0,1,...,P-1
