@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
-
+from mpl_toolkits.mplot3d import Axes3D
 
 # initialzed the data
 a= 0.2
@@ -39,12 +39,14 @@ for state in state_vals:
                 break
             else:
                 count +=1
-    # Plot the x and y coordinates of the solution over the specified time range
+
+    # Plot the solution in 3D over the specified time range
     fig = plt.figure()
-    plt.plot(solution[:, 0], solution[:, 1])
-    plt.plot(y1[0],y1[1], 'ro')
-    plt.xlabel('x')
-    plt.ylabel('y')
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot(solution[:, 0], solution[:, 1], solution[:, 2])
+    ax.plot(y1[0],y1[1],y1[2], 'ro')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
     plt.title('x_0 = {}'.format(state))
     plt.show()
-
