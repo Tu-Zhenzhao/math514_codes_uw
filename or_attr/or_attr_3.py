@@ -10,7 +10,7 @@ c=5.7
 state_0 = [-2, 0, 0]
 t_span = np.linspace(0,10, 10000)
 state_vals = [-9, -8, -7, -6, -5, -4, -3, -2]
-
+ys = []
 
 # define the ODE system
 def f(state, time, a, b, c):
@@ -22,6 +22,7 @@ def f(state, time, a, b, c):
 
 
 for state in state_vals:
+
 
     # Solve the ODE system numerically, passing a, b, and c as additional arguments to rossler
     solution = odeint(f, [state, 0, 0], t_span, args=(a, b, c))
@@ -35,6 +36,7 @@ for state in state_vals:
         if np.sign(ls[1]) != np.sign(solution[idx+1][1]):
             if count == 2:
                 y1=ls
+                ys.append(y1[0])
                 print("y1 is:", ls)
                 break
             else:
@@ -48,3 +50,7 @@ for state in state_vals:
     plt.title('x_0 = {}'.format(state))
     plt.show()
 
+plt.scatter(state_vals, ys)
+plt.xlabel('x_0')
+plt.ylabel('x_1')
+plt.show()
